@@ -1,0 +1,22 @@
+{
+    "entryFile": "api-docs/app.ts",
+    "noImplicitAdditionalProperties": "throw-on-extras",
+    "controllerPathGlobs": ["api-docs/controllers/*Controller.ts"],
+    "spec": {
+      "outputDirectory": "api-docs/build",
+      "name": "Cars Store - OpenAPI",
+      "description": "Cars Store - Manage your store through the API",
+      "version": "1.0.0",
+      "specVersion": 3,
+      "host": "localhost:8080",
+      "tags": [
+        {
+          "name": "car",
+          "description": "Car store endpoint"
+        }
+      ]
+    },
+    "routes": {
+      "routesDir": "api-docs/build"
+    }
+  }

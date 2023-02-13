@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Cars Store
+  description: Cars Store - Public API
+  contact:
+    email: przeprogramowani@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: car
+    description: Cars management
+paths:
+  /cars:
+    get:
+      tags:
+        - car
+      summary: Get all cars
+      description: Get all cars
+      operationId: getAllCars
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
+    post:
+      tags:
+        - car
+      summary: Add a new car to store
+      description: Add a new car to store
+      operationId: addCar
+      requestBody:
+        description: Car metadata
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+  /cars/{id}:
+    delete:
+      tags:
+        - car
+      summary: Delete car
+      description: Delete car by id
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          description: The id of the car that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+        '404':
+          description: Car not found
+components:
+  schemas:
+    Car:
+      required:
+        - manufacturer
+        - model
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        manufacturer:
+          type: string
+          example: Toyota
+        model:
+          type: string
+          example: Camry

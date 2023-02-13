@@ -1,0 +1,170 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Car": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"manufacturer": {
+						"type": "string"
+					},
+					"model": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"manufacturer",
+					"model"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AddCarParams": {
+				"properties": {
+					"manufacturer": {
+						"type": "string"
+					},
+					"model": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"manufacturer",
+					"model"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "Cars Store - OpenAPI",
+		"version": "1.0.0",
+		"description": "Cars Store - Manage your store through the API",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "psmyrdek"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/cars": {
+			"get": {
+				"operationId": "getCars",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Car"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Retrieves the list of cars",
+				"tags": [
+					"Car"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "addCar",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Car"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Adds new car",
+				"tags": [
+					"Car"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AddCarParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/cars/{id}": {
+			"delete": {
+				"operationId": "deleteCar",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Car"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Removes car by id",
+				"tags": [
+					"Car"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "https://localhost:8080/"
+		}
+	],
+	"tags": [
+		{
+			"name": "car",
+			"description": "Car store endpoint"
+		}
+	]
+}
